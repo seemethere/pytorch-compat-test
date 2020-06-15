@@ -1,9 +1,9 @@
-BASE_IMAGE ?= ubuntu:14.04
-BASE       ?= ubuntu-base
+BASE_IMAGE  ?= ubuntu:14.04
+BASE        ?= ubuntu-base
+PYTORCH_REF ?= master
 
-PYTORCH_DIR  = $${HOME}/scratch/pytorch
-DOCKER_BUILD = docker build -t compat-test:$@ --build-arg BASE_IMAGE=$(BASE_IMAGE) --build-arg BASE=$(BASE) .
-DOCKER_RUN   = docker run --rm -it -v $(PYTORCH_DIR):/pytorch -w /pytorch/test compat-test:$@
+DOCKER_BUILD = docker build -t compat-test:$@ --build-arg BASE_IMAGE=$(BASE_IMAGE) --build-arg BASE=$(BASE) --build-arg PYTORCH_REF=$(PYTORCH_REF) .
+DOCKER_RUN   = docker run --rm -it -w /pytorch/test compat-test:$@
 
 .PHONY: ubuntu-16.04
 ubuntu-16.04: BASE_IMAGE := ubuntu:16.04
