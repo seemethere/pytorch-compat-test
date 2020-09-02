@@ -38,6 +38,7 @@ RUN conda install -c pytorch-test \
         pillow \
         pytorch \
         pyyaml \
+        psutil \
         six
 COPY entrypoint.sh /entrypoint.sh
 WORKDIR /pytorch/test
